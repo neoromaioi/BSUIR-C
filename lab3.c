@@ -14,7 +14,12 @@
 int _tmain(int argc, _TCHAR* argv[])
 {
   int i, j;
-  int chessField[8][8];
+  //int chessField[8][8];
+  int **chessField = (int**)malloc(8*sizeof(int*));
+  for(int q = 0; q < 8; q++)
+  {
+	  chessField[q] = (int*)malloc(8*sizeof(int));
+  }
   for ( i = 0; i < 8; i++ )
   {
 	for ( j = 0; j < 8; j++ )
@@ -30,14 +35,14 @@ int _tmain(int argc, _TCHAR* argv[])
 	++n;
 		for ( j = 0; j < 8; j++ )
         {
-                printf( " %d", chessField[i][j]);
+				printf( " %d", chessField[i][j]);
         }
         printf( "\n" );
   }
   n=0;
   //char firstQueen[2];
   char* firstQueen;
-  firstQueen = (char*)malloc(3);
+  firstQueen = (char*)malloc(3*sizeof(char));
   printf( "First Queen coordinates: " );
   int x = scanf("%2s", firstQueen);
   while (firstQueen[0]<'A'||firstQueen[0]>'H')
@@ -56,7 +61,7 @@ int _tmain(int argc, _TCHAR* argv[])
   }
   //char secondQueen[2];
   char* secondQueen;
-  secondQueen = (char*)malloc(3);
+  secondQueen = (char*)malloc(3*sizeof(char));
   printf( "Second Queen coordinates: " );
   int y = scanf("%2s", secondQueen);
   while (secondQueen[0]<'A'||secondQueen[0]>'H')
@@ -75,7 +80,7 @@ int _tmain(int argc, _TCHAR* argv[])
   }
   //char King[2];
   char* King;
-  King = (char*)malloc(3);
+  King = (char*)malloc(3*sizeof(char));
   printf( "King coordinates: " );
   int z = scanf("%2s", King);
   while (King[0]<'A'||King[0]>'H')
@@ -140,7 +145,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			break;
 		}
   }
-  for(int i = a + 1, j = b + 1; i < 8, j < 8; i++, j++)
+  for(int i = a + 1, j = b + 1; i < 8 && j < 8; i++, j++)
   {
 	  if(chessField[i][j] == 2)
 	  {
@@ -155,7 +160,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			break;
 	  }
   }
-  for(int i = a - 1, j = b - 1; i >= 0, j >= 0; i--, j--)
+  for(int i = a - 1, j = b - 1; i >= 0 && j >= 0; i--, j--)
   {
 	  if(chessField[i][j] == 2)
 	  {
@@ -171,7 +176,7 @@ int _tmain(int argc, _TCHAR* argv[])
 	  }
   }
 
-  for(int i = a + 1, j = b - 1; i < 8, j >= 0; i++, j--)
+  for(int i = a + 1, j = b - 1; i < 8 && j >= 0; i++, j--)
   {
 	  if(chessField[i][j] == 2)
 	  {
@@ -186,7 +191,7 @@ int _tmain(int argc, _TCHAR* argv[])
 			break;
 	  }
   }
-  for(int i = a - 1, j = b + 1; i >= 0, j < 8; i--, j++)
+  for(int i = a - 1, j = b + 1; i >= 0 && j < 8; i--, j++)
   {
 	  if(chessField[i][j] == 2)
 	  {
@@ -200,6 +205,14 @@ int _tmain(int argc, _TCHAR* argv[])
 			}
 			break;
 	  }
+  }
+  free(firstQueen);
+  free(secondQueen);
+  free(King);
+  free(chessField);
+  for(int q = 0; q < 8; q++)
+  {
+	  free(chessField[q]);
   }
   getch();
   return 0;
