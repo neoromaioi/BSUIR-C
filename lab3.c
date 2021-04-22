@@ -3,7 +3,7 @@
 
 #include <stdio.h>
 #include <conio.h>
-
+#include <malloc.h>
 #ifdef _WIN32
 #include <tchar.h>
 #else
@@ -35,7 +35,9 @@ int _tmain(int argc, _TCHAR* argv[])
         printf( "\n" );
   }
   n=0;
-  char firstQueen[2];
+  //char firstQueen[2];
+  char* firstQueen;
+  firstQueen = (char*)malloc(3);
   printf( "First Queen coordinates: " );
   int x = scanf("%2s", firstQueen);
   while (firstQueen[0]<'A'||firstQueen[0]>'H')
@@ -52,7 +54,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("First Queen coordinates: ");
 	x = scanf("%2s", firstQueen);
   }
-  char secondQueen[2];
+  //char secondQueen[2];
+  char* secondQueen;
+  secondQueen = (char*)malloc(3);
   printf( "Second Queen coordinates: " );
   int y = scanf("%2s", secondQueen);
   while (secondQueen[0]<'A'||secondQueen[0]>'H')
@@ -69,7 +73,9 @@ int _tmain(int argc, _TCHAR* argv[])
 	printf("Second Queen coordinates: ");
 	y = scanf("%2s", secondQueen);
   }
-  char King[2];
+  //char King[2];
+  char* King;
+  King = (char*)malloc(3);
   printf( "King coordinates: " );
   int z = scanf("%2s", King);
   while (King[0]<'A'||King[0]>'H')
